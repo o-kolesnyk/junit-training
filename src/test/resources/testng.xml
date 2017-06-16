@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite name="TestNG training" verbose="5">
+<suite name="TestNG training" verbose="7">
     <test name="Test createFile function">
         <groups>
             <run>
