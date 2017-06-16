@@ -9,32 +9,32 @@ import java.io.IOException;
 
 public class CreateFileTest extends CreateFileFixture {
 
-    @Test
+    @Test(groups = "positive")
     public void shouldCreateFile() throws IOException {
         File file = new File(path + "/test.txt");
         Assert.assertTrue(file.createNewFile(), "File was not successfully created");
     }
 
-    @Test
+    @Test(groups = "positive")
     public void shouldCreateFileWithLongName() throws IOException {
         File file = new File(path + "/" + RandomStringUtils.randomAlphabetic(30) + ".txt");
-        Assert.assertTrue(file.createNewFile(), "File with long name was successfully created");
+        Assert.assertTrue(file.createNewFile(), "File with long name was not created");
     }
 
-    @Test
+    @Test(groups = "positive")
     public void shouldCreateFileWithCyrillicName() throws IOException {
         File file = new File(path + "/тест.txt");
-        Assert.assertTrue(file.createNewFile(), "File with cyrillic name was successfully created");
+        Assert.assertTrue(file.createNewFile(), "File with cyrillic name was not created");
     }
 
-    @Test
+    @Test(groups = "negative")
     public void shouldReturnFalseWhenFileExists() throws IOException {
         File file = new File(path + "/test.txt");
         file.createNewFile();
         Assert.assertFalse(file.createNewFile(), "File with duplicate name was created, but shouldn't be");
     }
 
-    @Test
+    @Test(groups = "negative")
     public void shouldThrowIOException() {
         File file = new File("wrongpath/test.txt");
         boolean isCreated = true;

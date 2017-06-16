@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="TestNG training" verbose="5">
+    <test name="Test createFile function">
+        <groups>
+            <run>
+                <include name="positive"/>
+                <include name="negative"/>
+            </run>
+            <dependencies>
+                <group name="negative" depends-on="positive"/>
+            </dependencies>
+        </groups>
+        <classes>
+            <class name="frameworks.homework.CreateFileTest"/>
+        </classes>
+    </test>
+</suite>

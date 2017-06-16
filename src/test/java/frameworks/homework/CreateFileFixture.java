@@ -14,7 +14,7 @@ public class CreateFileFixture {
 
     protected Path path;
 
-    @BeforeSuite
+    @BeforeSuite(groups = {"positive", "negative"})
     public void createDirectory() {
         try {
             path = Files.createTempDirectory("TestDirectory");
@@ -23,12 +23,12 @@ public class CreateFileFixture {
         }
     }
 
-    @AfterMethod
+    @AfterMethod(groups = {"positive", "negative"})
     public void cleanDirectory() throws IOException {
         FileUtils.cleanDirectory(new File(path.toString()));
     }
 
-    @AfterSuite
+    @AfterSuite(groups = {"positive", "negative"})
     public void deleteDirectory() {
         path.toFile().deleteOnExit();
     }
