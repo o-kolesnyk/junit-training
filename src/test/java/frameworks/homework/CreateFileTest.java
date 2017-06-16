@@ -34,16 +34,10 @@ public class CreateFileTest extends CreateFileFixture {
         Assert.assertFalse(file.createNewFile(), "File with duplicate name was created, but shouldn't be");
     }
 
-    @Test(groups = "negative")
-    public void shouldThrowIOException() {
+    @Test(groups = "negative", expectedExceptions = IOException.class)
+    public void shouldThrowIOException() throws IOException {
         File file = new File("wrongpath/test.txt");
-        boolean isCreated = true;
-        try {
-            file.createNewFile();
-        } catch (IOException e) {
-            isCreated = false;
-        }
-        Assert.assertFalse(isCreated, "The method should throw an exception when the path is wrong");
+        file.createNewFile();
     }
 
 }
