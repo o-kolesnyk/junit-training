@@ -11,22 +11,25 @@ public class CreateFileTest extends CreateFileFixture {
     @Test(dataProviderClass = DataProviders.class, dataProvider = "generateNames", groups = "positive")
     public void shouldCreateFile(String fileName) throws IOException {
         File file = new File(path + fileName);
-        file.createNewFile();
-        Assert.assertTrue(file.exists(), "File was not successfully created \n");
+        boolean isCreated = file.createNewFile();
+        boolean exists = file.exists();
+        Assert.assertTrue(isCreated & exists, "File was not successfully created \n");
     }
 
     @Test(dataProviderClass = DataProviders.class, dataProvider = "generateLongNames", groups = "positive")
     public void shouldCreateFileWithLongName(String fileName) throws IOException {
         File file = new File(path + fileName);
-        file.createNewFile();
-        Assert.assertTrue(file.exists(), "File with long name was not created \n");
+        boolean isCreated = file.createNewFile();
+        boolean exists = file.exists();
+        Assert.assertTrue(isCreated & exists, "File with long name was not created \n");
     }
 
     @Test(dataProviderClass = DataProviders.class, dataProvider = "loadCyrillicNamesFromFile", groups = "positive")
     public void shouldCreateFileWithCyrillicName(String fileName) throws IOException {
         File file = new File(path + fileName);
-        file.createNewFile();
-        Assert.assertTrue(file.exists(), "File with cyrillic name was not created \n");
+        boolean isCreated = file.createNewFile();
+        boolean exists = file.exists();
+        Assert.assertTrue(isCreated & exists, "File with cyrillic name was not created \n");
     }
 
     @Test(dataProviderClass = DataProviders.class, dataProvider = "generateNames", groups = "negative")
