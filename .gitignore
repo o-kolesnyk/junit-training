@@ -13,7 +13,6 @@ buildNumber.properties
 .project
 /test-output/
 
-# Intellij
 .idea/
 *.iml
 *.iws
