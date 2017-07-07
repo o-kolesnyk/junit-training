@@ -28,16 +28,19 @@ public class RunAgainRule implements TestRule {
         public void evaluate() throws Throwable {
             Unstable unstable = desc.getAnnotation(Unstable.class);
             if (unstable != null) {
-                int i = 1;
-                while (i > 0 && i <= unstable.value()) {
+                boolean isPassed = false;
+                int i = 0;
+                while (!isPassed && i < unstable.value() - 1) {
                     try {
                         base.evaluate();
-                        i = 0;
+                        isPassed = true;
                     } catch (Throwable t) {
                         i++;
                     }
                 }
-
+                if (!isPassed) {
+                    base.evaluate();
+                }
             }
 
         }
